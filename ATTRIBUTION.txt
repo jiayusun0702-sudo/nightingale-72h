@@ -1,0 +1,9 @@
+========================================================================
+Nightingale 72H Build - Third-Party Libraries & Dependencies Attribution
+========================================================================
+
+1. FastAPI - License: MIT
+2. Next.js / React - License: MIT
+3. Prisma / SQLAlchemy - License: Apache 2.0 / MIT
+4. OpenAI API Client - License: Apache 2.0
+5. Tailwind CSS - License: MIT
