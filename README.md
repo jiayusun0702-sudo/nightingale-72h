@@ -18,7 +18,7 @@ This project is built for the **Nightingale 72-Hour Build Challenge** (Aug 2026)
 git clone https://github.com/jiayusun0702-sudo/nightingale-72h.git
 cd nightingale-72h
 
-### 2. Backend Setup (FastAPI + SQLite)
+2. Backend Setup (FastAPI + SQLite)
 Open a new PowerShell terminal in the project root.
 
 # Navigate to backend folder
@@ -35,7 +35,7 @@ pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
 Note: If your entry file is located at backend/app/main.py, adjust the command to uvicorn app.main:app --reload --port 8000. If you use a different filename (e.g., server.py), modify accordingly.
 
-### 3. Frontend Setup (Next.js + React)
+3. Frontend Setup (Next.js + React)
 Open another PowerShell terminal in the project root.
 
 # Navigate to frontend folder
@@ -47,7 +47,7 @@ npm install
 # Run the development server
 npm run dev
 
-### 4. Access the Application
+4. Access the Application
 Frontend (Web UI): http://localhost:3000
 
 Backend API Docs (Swagger): http://localhost:8000/docs
