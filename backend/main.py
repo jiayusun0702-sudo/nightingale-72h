@@ -94,7 +94,18 @@ def create_timeline_entry(
         provenance_pointer=entry_in.provenance_pointer
     )
     db.add(db_entry)
-    db.commit()
+    
+        db.add(TimelineEntry(
+            care_note_id=1,
+            author_role="staff",
+            author_id="nurse_01",
+            type="manual_note",
+            content="Patient requested painkiller. Alerted @Dr.Zhang to review prescription dosage.",
+            provenance_pointer="entry_mention_01",
+            is_sensitive=False
+        ))
+
+        db.commit()
     db.refresh(db_entry)
     return db_entry
 
