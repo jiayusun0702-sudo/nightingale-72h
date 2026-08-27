@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "Nightingale Care Note",
-  description: "Longitudinal Shared Patient Record System",
+  description: "Longitudinal Shared Patient Record",
 };
 
 export default function RootLayout({
@@ -12,7 +12,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased bg-slate-50">{children}</body>
+      <body className="bg-slate-100 min-h-screen font-sans antialiased text-slate-800">
+        {children}
+      </body>
     </html>
   );
 }

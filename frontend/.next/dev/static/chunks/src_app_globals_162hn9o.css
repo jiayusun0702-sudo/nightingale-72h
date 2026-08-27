@@ -1,8 +1,23 @@
 /* [project]/src/app/globals.css [app-client] (css) */
-@tailwind base;
+html, body {
+  margin: 0;
+  padding: 0;
+  color: #0f172a !important;
+  background-color: #f8fafc !important;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
+}
 
-@tailwind components;
+main, div, section, header {
+  box-sizing: border-box;
+}
 
-@tailwind utilities;
+button {
+  cursor: pointer;
+}
+
+.ring-4 {
+  background-color: #eef2ff !important;
+  box-shadow: 0 0 0 4px #6366f1 !important;
+}
 
 /*# sourceMappingURL=src_app_globals_162hn9o.css.map*/

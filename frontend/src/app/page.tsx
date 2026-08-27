@@ -92,9 +92,11 @@ export default function Home() {
     const targetElement = document.getElementById(`entry-${pointerId}`);
     if (targetElement) {
       targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
-      targetElement.classList.add("ring-4", "ring-indigo-500", "bg-indigo-50", "transition-all", "duration-500");
+      targetElement.style.border = "2px solid #6366f1";
+      targetElement.style.backgroundColor = "#eef2ff";
       setTimeout(() => {
-        targetElement.classList.remove("ring-4", "ring-indigo-500", "bg-indigo-50");
+        targetElement.style.border = "1px solid #e2e8f0";
+        targetElement.style.backgroundColor = "#ffffff";
       }, 2500);
     }
   };
@@ -149,21 +151,21 @@ export default function Home() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-100 p-8 font-sans antialiased text-slate-800">
-      <div className="max-w-4xl mx-auto space-y-6">
+    <div style={{ minHeight: "100vh", backgroundColor: "#f8fafc", padding: "32px 16px", fontFamily: "sans-serif" }}>
+      <div style={{ maxWidth: "896px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "24px" }}>
         
-        {/* Header Bar */}
-        <header className="flex justify-between items-center bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80">
+        {/* Header */}
+        <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center", backgroundColor: "#ffffff", padding: "20px 24px", borderRadius: "16px", border: "1px solid #e2e8f0", boxShadow: "0 1px 3px rgba(0,0,0,0.05)" }}>
           <div>
-            <h1 className="text-2xl font-black text-slate-900 tracking-tight">Nightingale Care Note</h1>
-            <p className="text-xs font-medium text-slate-500 mt-0.5">Longitudinal Shared Patient Record System</p>
+            <h1 style={{ margin: 0, fontSize: "24px", fontWeight: 900, color: "#0f172a" }}>Nightingale Care Note</h1>
+            <p style={{ margin: "4px 0 0 0", fontSize: "13px", color: "#64748b" }}>Longitudinal Shared Patient Record System</p>
           </div>
-          <div className="flex items-center gap-3 bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200">
-            <span className="text-xs font-semibold text-slate-600">Role:</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", backgroundColor: "#f1f5f9", padding: "8px 12px", borderRadius: "10px" }}>
+            <span style={{ fontSize: "12px", fontWeight: 600, color: "#475569" }}>Role:</span>
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="bg-white text-xs font-bold text-slate-800 border border-slate-300 rounded-lg px-2.5 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
+              style={{ backgroundColor: "#ffffff", fontSize: "12px", fontWeight: 700, color: "#0f172a", border: "1px solid #cbd5e1", borderRadius: "6px", padding: "4px 8px", cursor: "pointer" }}
             >
               <option value="clinician">Clinician (Full Access)</option>
               <option value="staff">Staff (Operational)</option>
@@ -172,39 +174,36 @@ export default function Home() {
           </div>
         </header>
 
-        {/* 10s Rapid Readability Glance View (Top Card) */}
-        <section className="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white p-6 rounded-2xl shadow-xl border border-indigo-900/50 space-y-4">
-          <div className="flex justify-between items-center">
-            <h2 className="text-base font-bold flex items-center gap-2 text-indigo-100">
+        {/* Top Card */}
+        <section style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)", color: "#ffffff", padding: "24px", borderRadius: "16px", border: "1px solid #312e81", boxShadow: "0 10px 15px -3px rgba(0,0,0,0.3)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+            <h2 style={{ margin: 0, fontSize: "16px", fontWeight: 700, color: "#c7d2fe", display: "flex", alignItems: "center", gap: "8px" }}>
               ⚡ Top Card (Glance View - 10s Readability)
             </h2>
-            <span className="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full font-mono font-medium">
+            <span style={{ fontSize: "11px", backgroundColor: "rgba(16, 185, 129, 0.2)", color: "#34d399", border: "1px solid rgba(16, 185, 129, 0.4)", padding: "4px 10px", borderRadius: "9999px", fontFamily: "monospace" }}>
               P95 Latency: {topCard?.latency_ms || 45}ms
             </span>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-white/5 backdrop-blur-md p-4 rounded-xl border border-white/10">
-              <h3 className="text-xs font-bold text-indigo-300 uppercase tracking-wider mb-2.5">Open Actions</h3>
-              <ul className="space-y-1.5 text-xs text-slate-300">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+            <div style={{ backgroundColor: "rgba(255, 255, 255, 0.08)", padding: "16px", borderRadius: "12px", border: "1px solid rgba(255, 255, 255, 0.1)" }}>
+              <h3 style={{ margin: "0 0 10px 0", fontSize: "12px", fontWeight: 700, color: "#a5b4fc", textTransform: "uppercase" }}>Open Actions</h3>
+              <ul style={{ margin: 0, paddingLeft: "16px", fontSize: "13px", color: "#e2e8f0" }}>
                 {topCard?.open_actions.map((act, i) => (
-                  <li key={i} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full"></span>
-                    {act}
-                  </li>
+                  <li key={i} style={{ marginBottom: "6px" }}>{act}</li>
                 ))}
               </ul>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-md p-4 rounded-xl border border-white/10">
-              <h3 className="text-xs font-bold text-rose-300 uppercase tracking-wider mb-2.5">Critical Flags & Highlights</h3>
-              <div className="space-y-2">
+            <div style={{ backgroundColor: "rgba(255, 255, 255, 0.08)", padding: "16px", borderRadius: "12px", border: "1px solid rgba(255, 255, 255, 0.1)" }}>
+              <h3 style={{ margin: "0 0 10px 0", fontSize: "12px", fontWeight: 700, color: "#fca5a5", textTransform: "uppercase" }}>Critical Flags & Highlights</h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                 {topCard?.highlights.map((h, i) => (
-                  <div key={i} className="flex justify-between items-center text-xs bg-rose-950/40 p-2.5 rounded-lg border border-rose-800/40">
-                    <span className="text-rose-100 font-medium">{h.reason}</span>
+                  <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "12px", backgroundColor: "rgba(153, 27, 27, 0.4)", padding: "8px 12px", borderRadius: "8px", border: "1px solid rgba(248, 113, 113, 0.3)" }}>
+                    <span style={{ color: "#ffe4e6" }}>{h.reason}</span>
                     <button
                       onClick={() => handleJumpToEntry(h.provenance_pointer)}
-                      className="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-mono font-bold rounded-md transition-all shadow-sm flex items-center gap-1 cursor-pointer"
+                      style={{ padding: "4px 10px", backgroundColor: "#6366f1", color: "#ffffff", fontSize: "11px", fontWeight: "bold", fontFamily: "monospace", borderRadius: "6px", border: "none", cursor: "pointer" }}
                     >
                       📍 {h.provenance_pointer}
                     </button>
@@ -215,53 +214,53 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Timeline Section */}
-        <section className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80 space-y-5">
-          <h2 className="text-base font-bold text-slate-900 tracking-tight">Longitudinal Timeline Feed</h2>
+        {/* Longitudinal Timeline */}
+        <section style={{ backgroundColor: "#ffffff", padding: "24px", borderRadius: "16px", border: "1px solid #e2e8f0", boxShadow: "0 1px 3px rgba(0,0,0,0.05)" }}>
+          <h2 style={{ margin: "0 0 16px 0", fontSize: "18px", fontWeight: 700, color: "#0f172a" }}>Longitudinal Timeline Feed</h2>
 
-          {/* Note Input */}
-          <div className="space-y-2.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
-            <div className="flex gap-2">
+          {/* Input Box */}
+          <div style={{ backgroundColor: "#f8fafc", padding: "16px", borderRadius: "12px", border: "1px solid #e2e8f0", marginBottom: "20px" }}>
+            <div style={{ display: "flex", gap: "8px", marginBottom: "10px" }}>
               <input
                 type="text"
                 value={newNote}
                 onChange={(e) => setNewNote(e.target.value)}
                 placeholder="Write a note (Try @Dr.Zhang or phone +65 91234567)..."
-                className="flex-1 px-3.5 py-2 bg-white border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                style={{ flex: 1, padding: "10px 14px", border: "1px solid #cbd5e1", borderRadius: "8px", fontSize: "13px", outline: "none" }}
               />
               <button
                 onClick={handleAddEntry}
-                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition-all shadow-sm cursor-pointer"
+                style={{ padding: "10px 18px", backgroundColor: "#4f46e5", color: "#ffffff", fontSize: "13px", fontWeight: 700, border: "none", borderRadius: "8px", cursor: "pointer" }}
               >
                 Add Entry
               </button>
             </div>
 
-            <div className="flex items-center justify-between text-xs text-slate-500 pt-1">
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] font-semibold text-slate-400">Quick Mention:</span>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "12px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <span style={{ color: "#94a3b8", fontSize: "11px" }}>Quick Mention:</span>
                 <button
                   type="button"
                   onClick={() => setNewNote(prev => prev + " @Dr.Zhang")}
-                  className="px-2 py-0.5 bg-blue-50 text-blue-600 border border-blue-200 rounded-md hover:bg-blue-100 font-medium transition-colors cursor-pointer"
+                  style={{ backgroundColor: "#eff6ff", color: "#2563eb", border: "1px solid #bfdbfe", padding: "2px 8px", borderRadius: "4px", fontSize: "11px", fontWeight: 600, cursor: "pointer" }}
                 >
                   + @Dr.Zhang
                 </button>
                 <button
                   type="button"
                   onClick={() => setNewNote(prev => prev + " @NurseSarah")}
-                  className="px-2 py-0.5 bg-purple-50 text-purple-600 border border-purple-200 rounded-md hover:bg-purple-100 font-medium transition-colors cursor-pointer"
+                  style={{ backgroundColor: "#faf5ff", color: "#9333ea", border: "1px solid #e9d5ff", padding: "2px 8px", borderRadius: "4px", fontSize: "11px", fontWeight: 600, cursor: "pointer" }}
                 >
                   + @NurseSarah
                 </button>
               </div>
 
               {mentionFilter && (
-                <div className="flex items-center gap-2 bg-amber-50 text-amber-800 px-3 py-1 rounded-lg border border-amber-200 text-xs font-medium">
-                  <span>Filtering by: <strong>@{mentionFilter}</strong></span>
+                <div style={{ backgroundColor: "#fffbeb", color: "#b45309", border: "1px solid #fde68a", padding: "4px 10px", borderRadius: "6px" }}>
+                  Filtering by: <strong>@{mentionFilter}</strong>
                   <button
                     onClick={() => setMentionFilter(null)}
-                    className="text-amber-600 hover:text-amber-900 underline font-bold cursor-pointer"
+                    style={{ marginLeft: "8px", color: "#d97706", textDecoration: "underline", border: "none", background: "none", fontWeight: "bold", cursor: "pointer" }}
                   >
                     Clear Filter
                   </button>
@@ -270,31 +269,31 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Timeline Items */}
-          <div className="space-y-3.5 pt-2">
+          {/* Timeline Feed List */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             {visibleTimeline.map((entry) => (
               <div
                 key={entry.id}
                 id={`entry-${entry.provenance_pointer || entry.id}`}
-                className="p-4 rounded-xl border border-slate-200 bg-white transition-all duration-300 shadow-2xs space-y-2.5 hover:border-slate-300"
+                style={{ padding: "16px", borderRadius: "12px", border: "1px solid #e2e8f0", backgroundColor: "#ffffff", transition: "all 0.3s ease", display: "flex", flexDirection: "column", gap: "8px" }}
               >
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-bold text-indigo-600 uppercase tracking-wide">
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px" }}>
+                  <span style={{ fontWeight: 700, color: "#4f46e5", textTransform: "uppercase" }}>
                     {entry.author_role} ({entry.author_id})
                   </span>
-                  <span className="text-slate-400 font-mono text-[11px]">{entry.timestamp}</span>
+                  <span style={{ color: "#94a3b8", fontFamily: "monospace", fontSize: "11px" }}>{entry.timestamp}</span>
                 </div>
 
-                <p className="text-slate-800 text-xs leading-relaxed font-normal">{entry.content}</p>
+                <p style={{ margin: 0, fontSize: "13px", color: "#334155", lineHeight: 1.5 }}>{entry.content}</p>
 
                 {entry.mentions && entry.mentions.length > 0 && (
-                  <div className="flex items-center gap-1.5 text-xs pt-0.5">
-                    <span className="text-slate-400 text-[11px]">Mentions:</span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "12px" }}>
+                    <span style={{ color: "#94a3b8", fontSize: "11px" }}>Mentions:</span>
                     {entry.mentions.map((m, idx) => (
                       <button
                         key={idx}
                         onClick={() => setMentionFilter(m)}
-                        className="bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 px-2 py-0.5 rounded-full font-medium transition-colors cursor-pointer text-[11px]"
+                        style={{ backgroundColor: "#eff6ff", color: "#1d4ed8", border: "1px solid #bfdbfe", padding: "2px 8px", borderRadius: "12px", fontSize: "11px", fontWeight: 600, cursor: "pointer" }}
                       >
                         @{m}
                       </button>
@@ -302,13 +301,13 @@ export default function Home() {
                   </div>
                 )}
 
-                <div className="flex justify-between items-center text-xs pt-2 border-t border-slate-100">
-                  <span className="text-slate-400 font-mono text-[11px]">Pointer: {entry.provenance_pointer}</span>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "12px", paddingTop: "8px", borderTop: "1px solid #f1f5f9" }}>
+                  <span style={{ color: "#94a3b8", fontFamily: "monospace", fontSize: "11px" }}>Pointer: {entry.provenance_pointer}</span>
                   
                   {entry.revisions && (
                     <button
                       onClick={() => setActiveRevisionId(activeRevisionId === entry.id ? null : entry.id)}
-                      className="text-indigo-600 hover:text-indigo-800 hover:underline font-semibold flex items-center gap-1 cursor-pointer"
+                      style={{ color: "#4f46e5", background: "none", border: "none", fontWeight: 600, cursor: "pointer" }}
                     >
                       📜 Revision History ({entry.revisions.length})
                     </button>
@@ -316,28 +315,28 @@ export default function Home() {
                 </div>
 
                 {activeRevisionId === entry.id && entry.revisions && (
-                  <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 mt-3 text-xs space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="font-bold text-slate-700">📜 Audit Revision Log & Diff History</span>
-                      <span className="text-[10px] bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full font-mono">
+                  <div style={{ backgroundColor: "#f8fafc", padding: "14px", borderRadius: "10px", border: "1px solid #cbd5e1", marginTop: "8px", fontSize: "12px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+                      <span style={{ fontWeight: 700, color: "#334155" }}>📜 Audit Revision Log & Diff History</span>
+                      <span style={{ backgroundColor: "#e2e8f0", color: "#475569", padding: "2px 6px", borderRadius: "4px", fontFamily: "monospace", fontSize: "10px" }}>
                         v{entry.revisions.length}.0
                       </span>
                     </div>
                     
-                    <div className="space-y-2">
+                    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                       {entry.revisions.map((rev, index) => (
-                        <div key={index} className="p-3 bg-white rounded-lg border border-slate-200 space-y-2">
-                          <div className="flex justify-between items-center text-[11px]">
-                            <span className="font-bold text-indigo-600">Revision #{index + 1}</span>
-                            <span className="text-slate-400">{rev.timestamp}</span>
+                        <div key={index} style={{ padding: "10px", backgroundColor: "#ffffff", borderRadius: "6px", border: "1px solid #cbd5e1" }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", fontSize: "11px" }}>
+                            <span style={{ fontWeight: 700, color: "#4f46e5" }}>Revision #{index + 1}</span>
+                            <span style={{ color: "#94a3b8" }}>{rev.timestamp}</span>
                           </div>
-                          <div className="p-2.5 bg-slate-50 rounded-md border border-slate-200 font-mono text-slate-700 text-[11px]">
+                          <div style={{ padding: "8px", backgroundColor: "#f1f5f9", borderRadius: "4px", fontFamily: "monospace", fontSize: "11px", color: "#1e293b", marginBottom: "6px" }}>
                             {rev.content}
                           </div>
-                          <div className="flex justify-end pt-1">
+                          <div style={{ display: "flex", justifyContent: "flex-end" }}>
                             <button
                               onClick={() => handleRevert(entry.id, rev.content)}
-                              className="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-300 rounded-lg font-medium text-[11px] transition-colors flex items-center gap-1 cursor-pointer"
+                              style={{ padding: "4px 8px", backgroundColor: "#fffbe8", color: "#b45309", border: "1px solid #fde68a", borderRadius: "6px", fontSize: "11px", fontWeight: 600, cursor: "pointer" }}
                             >
                               ↺ Revert to this Version
                             </button>
